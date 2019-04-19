@@ -3,6 +3,7 @@ live user count by nodejs and socket.io
 
 
 ```javascript
+// socket.js
 /*!
  * Socket.IO v2.2.0
  * (c) 2014-2018 Guillermo Rauch
@@ -16,9 +17,12 @@ var h,f,l,d=String.fromCharCode;t.exports={version:"2.1.2",encode:a,decode:u}},f
 
 Add the above script into your html file and follow the steps
 
-```javascript
+```html
+<script src="/path/to/socket.js"></script>
+<script type="text/javascript">
 const socket = io('http://localhost:3000');
 socket.on("count", (usersCount) => {
   document.getElementById('your element id').innerHTML = usersCount;
 })
+</script>
 ```
