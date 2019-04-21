@@ -13,7 +13,7 @@ server.listen(PORT, '0.0.0.0', () => {
 io.on('connection', (socket) => {
 
   socket.on('login', (data) => {
-    console.log(data)
+    console.log("Connected: ", data.username)
     socket.username = data.username
     users.includes(data.username)
       ? console.log("already")
@@ -21,9 +21,10 @@ io.on('connection', (socket) => {
     io.emit("users", users)
     io.emit("count", io.engine.clientsCount)
   })
-  socket.on('disconnect', (id) => {
-    console.log(socket.username)
+  socket.on('disconnect', () => {
+    users = users.filter(user => user !== socket.username)
+    console.log("Disconnected: ", socket.username)
     io.emit("count", io.engine.clientsCount)
-    io.emit("users", users.filter(user => user !== socket.username))
+    io.emit("users", users)
   })
 })
