@@ -6,6 +6,10 @@ const PORT = process.env.PORT || 3000
 
 let users = []
 
+app.use((req, res) => {
+  console.log(req.method, " - ", req.url)
+  return res.send("done")
+})
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`socket server is running on port ${PORT}`)
 })
